@@ -1,0 +1,147 @@
+<%- include('partials/header') %>
+
+<div class="container fade-in">
+  <h1>Welcome, <%= user.name %>! 🌱</h1>
+  
+  <!-- Profile Summary Section -->
+  <div class="stats">
+    <p>Total Points: <strong><%= user.points %></strong></p>
+    <p>CO₂ Saved: <strong>
+      <%= (typeof user.co2Saved === 'number' && !isNaN(user.co2Saved)) ? user.co2Saved.toFixed(2) : '0.00' %> kg
+    </strong></p>    
+    <p>Current Streak: <strong><%= user.streak || 0 %> days</strong></p>
+  </div>
+
+  <div class="feature-cards">
+    <!-- Profile Card -->
+    <div class="card">
+      <h2>My Profile</h2>
+      <div class="quick-stats">
+        <p>Level: <%= user.level || 'Eco Starter' %></p>
+        <p>Badges: <%= user.badges?.length || 0 %></p>
+      </div>
+      <a href="/profile" class="button">View Profile</a>
+    </div>
+
+    <!-- Travel Log Card -->
+    <div class="card">
+      <h2>Log Travel</h2>
+      <p>Track your eco-friendly journeys</p>
+      <a href="/travel" class="button">Log a Trip</a>
+    </div>
+
+    <!-- Rewards Card -->
+    <div class="card">
+      <h2>Rewards</h2>
+      <p>Redeem your <%= user.points %> points</p>
+      <a href="/rewards" class="button">View Rewards</a>
+    </div>
+
+    <!-- Daily Challenge Card -->
+    <div class="card challenge-card">
+      <h2>Daily Challenge</h2>
+      <p class="challenge-text">Complete 3 trips today!</p>
+      <div class="progress-bar">
+        <div class="progress" style="width: <%= ((user.dailyTrips || 0) / 3) * 100 %>%"></div>
+      </div>
+      <p><%= user.dailyTrips || 0 %>/3 trips</p>
+      <p class="bonus-text">Bonus: +50 points</p>
+    </div>
+
+    <!-- Streak Rewards -->
+    <div class="card streak-card">
+      <h2>Streak Rewards</h2>
+      <div class="streak-info">
+        <p>Current Streak: <%= user.streak || 0 %> days</p>
+        <p>Weekly Streak: <%= Math.floor((user.streak || 0) / 7) %> weeks</p>
+        <p>Next Reward: <%= 7 - ((user.streak || 0) % 7) %> days left</p>
+      </div>
+      <div class="streak-circles">
+        <% for(let i = 1; i <= 7; i++) { %>
+          <div class="streak-circle <%= i <= (user.streak % 7 || 7) ? 'active' : '' %>">
+            <%= i %>
+          </div>
+        <% } %>
+      </div>
+    </div>
+   <!-- Refer and Earn -->
+<div class="card">
+  <h2>Refer and Earn</h2>
+  <p>Invite your friends to join EcoMiles and earn rewards!</p>
+  <button id="referButton" class="styled-button" onclick="generateReferralLink()">Generate Referral Link</button>
+  <p id="referralLink" style="margin-top: 10px;"></p>
+  <p class="bonus-text">Earn 200 points for every successful referral!</p>
+</div>
+
+<script>
+  function generateReferralLink() {
+    const referralCode = '<%= user.referralCode || "defaultCode123" %>'; // Placeholder for server-generated code
+    const referralLink = `${window.location.origin}/signup?ref=${referralCode}`;
+    
+    const linkElement = document.getElementById('referralLink');
+    linkElement.innerHTML = `Your referral link: <a href="${referralLink}" target="_blank">${referralLink}</a> <button class="copy-icon" onclick="copyToClipboard('${referralLink}')">📋</button>`;
+
+    alert('Your referral link has been generated! Share it to earn rewards.');
+  }
+
+  function copyToClipboard(text) {
+    navigator.clipboard.writeText(text).then(() => {
+      alert('Referral link copied to clipboard!');
+    }, () => {
+      alert('Failed to copy referral link.');
+    });
+  }
+</script>
+
+<style>
+  .styled-button {
+    background-color: #00A86B;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+  .styled-button:hover {
+    background-color: #03a800;
+  }
+
+  .copy-icon {
+    background: none;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+    margin-left: 10px;
+    color: #00A86B;
+  }
+
+  .copy-icon:hover {
+    color: #00A86B;
+  }
+
+  .bonus-text {
+    color: #000000;
+    font-weight: bold;
+  }
+</style>
+
+<!-- Backend Integration Placeholder -->
+<!-- On new user signup, verify the referral code and add 200 points to the referrer's account in the database -->
+
+    <!-- Tree Planting Progress -->
+    <div class="card">
+      <h2>Tree Planting Progress</h2>
+      <p>Points needed for next tree: <%= 500 - (user.points % 500) %></p>
+      <div class="progress-bar">
+        <div class="progress" style="width: <%= ((user.points % 500) / 500) * 100 %>%"></div>
+      </div>
+      <p>Trees planted: <%= Math.floor(user.points / 500) %></p>
+    </div>
+  </div>
+</div>
+
+<%- include('partials/footer') %>
+

@@ -1,0 +1,23 @@
+<%- include('partials/header') %>
+
+<div class="container fade-in">
+  <h1>Rewards</h1>
+  <div class="stats">
+    <p>Your Points: <strong><%= user.points %></strong></p>
+  </div>
+  <div class="rewards-list">
+    <% rewards.forEach(reward => { %>
+      <div class="card">
+        <h2><%= reward.name %></h2>
+        <p><%= reward.description %></p>
+        <p><strong><%= reward.points %> Points</strong></p>
+        <button class="button" <%= user.points >= reward.points ? '' : 'disabled' %>>
+          <%= user.points >= reward.points ? 'Claim Reward' : 'Not Enough Points' %>
+        </button>
+      </div>
+    <% }); %>
+  </div>
+</div>
+
+<%- include('partials/footer') %>
+

@@ -1,0 +1,34 @@
+<%- include('partials/header') %>
+
+<div class="container fade-in">
+  <h1>Sign Up for EcoMiles Rewards</h1>
+  <div class="card">
+    <form action="/signup" method="POST">
+      <div class="form-group">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+      </div>
+      <div class="form-group">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required>
+      </div>
+      <div class="form-group">
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required>
+      </div>
+      <div class="form-group">
+        <label for="city">City:</label>
+        <select id="city" name="city" required>
+          <option value="">Select a city</option>
+          <% gujaratCities.forEach(city => { %>
+            <option value="<%= city %>"><%= city %></option>
+          <% }); %>
+        </select>        
+      </div>
+      <button type="submit" class="button">Sign Up</button>
+    </form>
+    <p>Already have an account? <a href="/login">Login here</a></p>
+  </div>
+</div>
+
+<%- include('partials/footer') %>

@@ -1,0 +1,57 @@
+<%- include('partials/header') %>
+
+<div class="container fade-in">
+  <h1>Log Your Travel</h1>
+  <div class="card">
+    <form action="/travel" method="POST" enctype="multipart/form-data">
+      <div class="form-group">
+        <label for="start">Start Location:</label>
+        <select id="start" name="start" required>
+          <option value="">Select start location</option>
+          <% gujaratCities.forEach(city => { %>
+            <option value="<%= city %>"><%= city %></option>
+          <% }); %>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="end">End Location:</label>
+        <select id="end" name="end" required>
+          <option value="">Select end location</option>
+          <% gujaratCities.forEach(city => { %>
+            <option value="<%= city %>"><%= city %></option>
+          <% }); %>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="travelType">Travel Type:</label>
+        <select id="travelType" name="travelType" required>
+          <option value="">Select travel type</option>
+          <option value="metro">Metro (1.5x points)</option>
+          <option value="evBus">EV Bus (1.5x points)</option>
+          <option value="dieselBus">Diesel Bus (1x points)</option>
+          <option value="walking">Walking (2x points)</option>
+          <option value="cycling">Cycling (2x points)</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="ticketProof">Upload Ticket/Proof:</label>
+        <div class="file-upload">
+          <input type="file" id="ticketProof" name="ticketProof" accept="image/*" required>
+          <p class="file-hint">Upload your travel ticket or proof (image format)</p>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="travelTime">Travel Time:</label>
+        <select id="travelTime" name="travelTime" required>
+          <option value="">Select travel time</option>
+          <option value="offPeak">Off-Peak Hours (Bonus Points)</option>
+          <option value="peak">Peak Hours</option>
+        </select>
+      </div>
+      <button type="submit" class="button">Log Trip</button>
+    </form>
+  </div>
+</div>
+
+<%- include('partials/footer') %>
+

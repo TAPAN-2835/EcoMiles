@@ -1,0 +1,20 @@
+<%- include('partials/header') %>
+
+<div class="container fade-in">
+  <h1>Trip Logged Successfully!</h1>
+  <div class="card">
+    <h2>Trip Summary</h2>
+    <p>Travel Type: <%= travelType %></p>
+    <p>Distance: <%= distance.toFixed(2) %> km</p>
+    <p>Points Earned: <strong><%= points %> points 🎉</strong></p>
+    <p>CO₂ Saved: <%= co2Saved.toFixed(2) %> kg</p>
+    <div class="progress-bar">
+      <div class="progress" style="width: <%= (co2Saved / 50) * 100 %>%;>"></div>
+    </div>
+    <p>Progress towards 50 kg CO₂ saved goal</p>
+    <a href="/dashboard" class="button">Back to Dashboard</a>
+  </div>
+</div>
+
+<%- include('partials/footer') %>
+

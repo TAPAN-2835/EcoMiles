@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EcoMiles Rewards - Welcome</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome to EcoMiles Rewards 🚍🌱</h1>
+        <form action="/signup" method="POST">
+            <input type="text" name="username" placeholder="Username" required>
+            <input type="email" name="email" placeholder="Email" required>
+            <input type="password" name="password" placeholder="Password" required>
+            <select name="city" required>
+                <option value="">Select your city</option>
+                <option value="new-york">New York</option>
+                <option value="london">London</option>
+                <option value="tokyo">Tokyo</option>
+            </select>
+            <div class="checkbox-container">
+                <input type="checkbox" id="terms" name="terms" required>
+                <label for="terms">I agree to the terms & conditions</label>
+            </div>
+            <button type="submit">Get Started</button>
+        </form>
+        <p class="eco-message">Every ride matters! Reduce your carbon footprint.</p>
+    </div>
+</body>
+</html>
+

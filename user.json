@@ -1,0 +1,22 @@
+[
+  {
+    "id": 1,
+    "name": "John Doe",
+    "username": "johndoe",
+    "password": "$2b$10$e8mDsOajPbMcwHaFqKfE7eQKvgOH/ksXc5KSe.Y1n0S12AsF/mfKO",
+    "points": 250,
+    "co2Saved": 30,
+    "isNewUser": false,
+    "city": "Ahmedabad"
+  },
+  {
+    "id": 2,
+    "name": "Jane Smith",
+    "username": "janesmith",
+    "password": "$2b$10$4iyKHlwRMTYZD8tYs8a1jOvc0zM7SBi2zjv1KBO8oDX/IV.ZhM6Fa",
+    "points": 0,
+    "co2Saved": 0,
+    "isNewUser": true,
+    "city": "Surat"
+  }
+]

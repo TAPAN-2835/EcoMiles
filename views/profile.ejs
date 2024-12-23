@@ -1,0 +1,66 @@
+<%- include('partials/header') %>
+
+<div class="container fade-in">
+  <h1><%= user.name %>'s Profile</h1>
+  <div class="card">
+    <div class="stats">
+      <p>Total Points: <strong><%= user.points %></strong></p>
+      <p>CO₂ Saved: <strong><%= user.co2Saved.toFixed(2) %> kg</strong></p>
+      <p>Current Streak: <strong><%= user.streak || 0 %> days</strong></p>
+      <p>Weekly Streak: <strong><%= Math.floor((user.streak || 0) / 7) %> weeks</strong></p>
+    </div>
+    <h2>Badges Earned</h2>
+    <div class="badges">
+      <span class="badge">Eco Starter</span>
+      <% if (user.points >= 100) { %>
+        <span class="badge">Centurion</span>
+      <% } %>
+      <% if (user.co2Saved >= 50) { %>
+        <span class="badge">Carbon Crusher</span>
+      <% } %>
+      <% if (user.streak >= 7) { %>
+        <span class="badge">Weekly Warrior</span>
+      <% } %>
+      <% if (Math.floor(user.streak / 7) >= 4) { %>
+        <span class="badge">Monthly Master</span>
+      <% } %>
+    </div>
+    <h2>Streak Rewards</h2>
+    <div class="streak-rewards">
+      <p>Complete a full week streak to earn bonus rewards!</p>
+      <ul>
+        <li>1 Week Streak: 100 bonus points</li>
+        <li>4 Week Streak: 500 bonus points + "Monthly Master" badge</li>
+        <li>12 Week Streak: 2000 bonus points + "Quarterly Queen/King" badge</li>
+      </ul>
+    </div>
+    <h2>Travel History</h2>
+    <% if (user.isNewUser) { %>
+      <p>No travel history yet. Start your eco-friendly journey by logging your first trip!</p>
+    <% } else { %>
+      <table>
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Type</th>
+            <th>Distance (km)</th>
+            <th>Points Earned</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% travelHistory.forEach(trip => { %>
+            <tr>
+              <td><%= trip.date %></td>
+              <td><%= trip.type %></td>
+              <td><%= trip.distance %></td>
+              <td><%= trip.pointsEarned %></td>
+            </tr>
+          <% }); %>
+        </tbody>
+      </table>
+    <% } %>
+  </div>
+</div>
+
+<%- include('partials/footer') %>
+
