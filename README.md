@@ -1,6 +1,3 @@
-Here's the updated `README.md` file based on the additional details:
-
-```markdown
 # EcoTransitRewards
 
 ## Description
